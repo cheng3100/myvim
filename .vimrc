@@ -19,6 +19,41 @@ filetype plugin on
 " 定义快捷键到行首和行尾
 nmap LB 0
 nmap LE $
+" 跳转至右方的窗口
+" nnoremap <Leader>lw <C-W>l
+" 跳转至左方的窗口
+" nnoremap <Leader>hw <C-W>h
+" 跳转至上方的子窗口
+" nnoremap <Leader>kw <C-W>k
+" 跳转至下方的子窗口
+"nnoremap <Leader>jw <C-W>j
+
+" 开启语法高亮功能
+syntax enable
+" 允许用指定语法高亮配色方案替换默认方案
+syntax on
+
+" 自适应不同语言的智能缩进
+filetype indent on
+" 将制表符扩展为空格
+set expandtab
+" 设置编辑时制表符占用空格数
+set tabstop=4
+" 设置格式化时制表符占用空格数
+set shiftwidth=4
+" 让 vim 把连续数量的空格视为一个制表符
+set softtabstop=4
+
+" 禁止光标闪烁
+set gcr=a:block-blinkon0
+" 禁止显示滚动条
+set guioptions-=l
+set guioptions-=L
+set guioptions-=r
+set guioptions-=R
+" 禁止显示菜单和工具条
+set guioptions-=m
+set guioptions-=T
 
 
 " <<
@@ -57,6 +92,8 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'tomasr/molokai'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin' 
+"代码分析
+Plugin 'brookhong/cscope.vim'
 "代码注释
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'vim-scripts/DrawIt'
@@ -69,15 +106,42 @@ filetype plugin indent on
 " <<<<
 "全局搜索
 map <F7> : CtrlPCurWD<CR>
+map <leader><F7> : CtrlP
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:20'
 "let g:ctrlp_show_hidden = 1
 
+
+nnoremap <leader>fa :call CscopeFindInteractive(expand('<cword>'))<CR>
+nnoremap <leader>L :call ToggleLocationList()<CR>
+
+
+" s: Find this C symbol
+nnoremap  <leader>fs :call CscopeFind('s', expand('<cword>'))<CR>
+" g: Find this definition
+nnoremap  <leader>fg :call CscopeFind('g', expand('<cword>'))<CR>
+" d: Find functions called by this function
+nnoremap  <leader>fd :call CscopeFind('d', expand('<cword>'))<CR>
+" c: Find functions calling this function
+nnoremap  <leader>fc :call CscopeFind('c', expand('<cword>'))<CR>
+" t: Find this text string
+nnoremap  <leader>ft :call CscopeFind('t', expand('<cword>'))<CR>
+" e: Find this egrep pattern
+nnoremap  <leader>fe :call CscopeFind('e', expand('<cword>'))<CR>
+" f: Find this file
+nnoremap  <leader>ff :call CscopeFind('f', expand('<cword>'))<CR>
+" i: Find files #including this file
+nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
+
+
 "目录管理
 map <leader>lf :NERDTreeToggle<CR>
-map <leader>f : NERDTreeFocus<CR>
+map <leader>F : NERDTreeFocus<CR>
 map <leader>l : NERDTree 
+map <leader>w : NERDTreeFind<CR>
 
 let NERDTreeShowLineNumbers=0
+"打开垂直窗口  s
+"打开水平窗口  i
 
 "nerdtree git 插件
 let g:NERDTreeIndicatorMapCustom = {
@@ -118,22 +182,6 @@ set hlsearch
 
 " >>
 " 语法分析
-
-" 开启语法高亮功能
-syntax enable
-" 允许用指定语法高亮配色方案替换默认方案
-syntax on
-
-" 禁止光标闪烁
-set gcr=a:block-blinkon0
-" 禁止显示滚动条
-set guioptions-=l
-set guioptions-=L
-set guioptions-=r
-set guioptions-=R
-" 禁止显示菜单和工具条
-set guioptions-=m
-set guioptions-=T
 
 let g:Powerline_colorscheme='solarized256'
 
