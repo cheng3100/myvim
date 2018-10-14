@@ -15,6 +15,12 @@ filetype plugin on
 
 " >>
 " vim 自身（非插件）快捷键
+"  window change
+nmap <Leader>ww :resize +3 <CR>
+nmap <Leader>wx :resize -3 <CR>
+nmap <Leader>wa :vertical resize -5 <CR>
+nmap <Leader>wd :vertical resize +5 <CR>
+"nmap <C--> :vertical resize -3 <CR>
 
 " 定义快捷键到行首和行尾
 nmap LB 0
@@ -68,7 +74,7 @@ autocmd BufWritePost $MYVIMRC source $MYVIMRC
 set incsearch
 
 " 搜索时大小写不敏感
-set ignorecase
+"set ignorecase
 
 " 关闭兼容模式
 set nocompatible
@@ -97,7 +103,7 @@ Plugin 'brookhong/cscope.vim'
 "代码注释
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'vim-scripts/DrawIt'
-
+Plugin 'Yggdroot/LeaderF'
 "文件搜索
 Plugin 'ctrlpvim/ctrlp.vim'
 " 插件列表结束
@@ -135,9 +141,9 @@ nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
 
 "目录管理
 map <leader>lf :NERDTreeToggle<CR>
-map <leader>F : NERDTreeFocus<CR>
-map <leader>l : NERDTree 
-map <leader>w : NERDTreeFind<CR>
+map <leader>lF :NERDTreeFocus<CR>
+map <leader>l :NERDTree 
+map <leader>lw :NERDTreeFind<CR>
 
 let NERDTreeShowLineNumbers=0
 "打开垂直窗口  s
