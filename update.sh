@@ -1,5 +1,11 @@
 #! /bin/bash
-
+if [ $# -ne 1 ];then
+    echo "Usage: ./update <option>"
+    echo "<option>:"
+    echo "1. update: update the local to the git resp"
+    echo "2. install: install from the git resp to local"
+    exit
+fi
 if [ $1 = "update" ]; then
     tar -czvf vim_plugin.tar.gz -C ~ .vim 
     cp ~/.vimrc .vimrc
