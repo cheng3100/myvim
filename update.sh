@@ -1,4 +1,7 @@
 #! /bin/bash
+
+#TODO 检查cscope是否存在，若不存在则询问是否安装cscope并解压安装
+
 if [ $# -ne 1 ];then
     echo "Usage: ./update <option>"
     echo "<option>:"
