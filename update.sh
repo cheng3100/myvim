@@ -26,12 +26,15 @@ function install_cscope {
 if [ ! -d ~/bin ];then
     mkdir -p ~/bin
 fi
-tar -xzvf cscope-15.9.tar.gz
-cd cscope-15.9
+#tar -xzvf cscope-15.9.tar.gz
+tar -xzvf cscope-15.8b.tar.gz
+cd cscope-15.8b
 
 sh ./configure --prefix=$HOME/bin >/dev/null 2>&1
 make > /dev/null 2>&1
 make install > /dev/null 2>&1
+#echo "export PATH=$PATH:$HOME/bin/bin" >> $HOME/.bashrc
+#source $HOME/.bashrc
 cd ../../
     echo "cscope has been installed!" 
 }
