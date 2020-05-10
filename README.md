@@ -9,6 +9,20 @@
 ./update install
 ```
 
+# **note**
+> windows 下应用到_vimrc时，由于windows编码的问题，需要将vimrc中的这一部分注释打开，否则会出现_vimrc文件执行错误
+```
+"uncomment in windows
+set encoding=utf-8  
+set termencoding=utf-8   
+set fileencoding=chinese 
+set fileencodings=ucs-bom,utf-8,chinese   
+set langmenu=zh_CN.utf-8  
+source $VIMRUNTIME/delmenu.vim  
+source $VIMRUNTIME/menu.vim
+language messages zh_cn.utf-8  
+```
+
 # vim使用
 - cscope
 >用于函数定义、调用以及符号搜索等查找
