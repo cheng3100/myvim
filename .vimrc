@@ -1,124 +1,112 @@
-" uncomment this on windows environment
-"set encoding=utf-8  
-"set termencoding=utf-8   
-"set fileencoding=chinese 
-"set fileencodings=ucs-bom,utf-8,chinese   
-"set langmenu=zh_CN.utf-8  
-"source $VIMRUNTIME/delmenu.vim  
+" uncomment this when using in windows chinese version
+"set encoding=utf-8
+"set termencoding=utf-8
+"set fileencoding=chinese
+"set fileencodings=ucs-bom,utf-8,chinese
+"set langmenu=zh_CN.utf-8
+"source $VIMRUNTIME/delmenu.vim
 "source $VIMRUNTIME/menu.vim
-"language messages zh_cn.utf-8  
+"language messages zh_cn.utf-8
 
-" 定义快捷键的前缀，即 <Leader>
+" define the control prefix，which is  <Leader>
 let mapleader=";"
 
-" >>
-" 文件类型侦测
-
-" 开启文件类型侦测
+" open file type detact
 filetype on
-" 根据侦测到的不同类型加载对应的插件
+" load diff plugins for diff type of file
 filetype plugin on
 
-" <<
 
-" >>
-" vim 自身（非插件）快捷键
+" vim build-in control
 "  window change
 nmap <Leader>ww :resize +3 <CR>
 nmap <Leader>wx :resize -3 <CR>
 nmap <Leader>wa :vertical resize -5 <CR>
 nmap <Leader>wd :vertical resize +5 <CR>
-"nmap <C--> :vertical resize -3 <CR>
 
-" 定义快捷键到行首和行尾
-nmap LB 0
-nmap LE $
-" 跳转至右方的窗口
-" nnoremap <Leader>lw <C-W>l
-" 跳转至左方的窗口
-" nnoremap <Leader>hw <C-W>h
-" 跳转至上方的子窗口
-" nnoremap <Leader>kw <C-W>k
-" 跳转至下方的子窗口
-"nnoremap <Leader>jw <C-W>j
 
-" 开启语法高亮功能
+" enable build-in syntax-highlight
 syntax enable
-" 允许用指定语法高亮配色方案替换默认方案
+" enable using the outside syntax-highlight plugin to overload the build-in
+" one
 syntax on
 
-" 自适应不同语言的智能缩进
+" Adapt to different code indentation 
 filetype indent on
-" 将制表符扩展为空格
+
+" expand the tab to whitespace
 set expandtab
-" 设置编辑时制表符占用空格数
+" set the numbers of space of one tab
 set tabstop=4
-" 设置格式化时制表符占用空格数
+" set the numberos of space of a tab when doing a format
 set shiftwidth=4
-" 让 vim 把连续数量的空格视为一个制表符
+" treat contiguous Spaces as tab
 set softtabstop=4
 
-" 禁止光标闪烁
+" remove unwanted whitespace/tabs in the end of each line
+nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\(\s\\|\t\)\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
+
+" disable the blink of cursor
 set gcr=a:block-blinkon0
-" 禁止显示滚动条
+" hide the scroll bar
 set guioptions-=l
 set guioptions-=L
 set guioptions-=r
 set guioptions-=R
-" 禁止显示菜单和工具条
+" hide the menu bar and tool bar
 set guioptions-=m
 set guioptions-=T
 
 
-" <<
-
-" 让配置变更立即生效
+" let change in vimrc take effect immediatly
 autocmd BufWritePost $MYVIMRC source $MYVIMRC
 
-" >>
-" 其他
-
-" 开启实时搜索功能
+" search on-time
 set incsearch
 
-" 搜索时大小写不敏感
+"turn off search result highlight
+nmap <Leader>/ :nohl<CR>
+
 "set ignorecase
 
-" 关闭兼容模式
 set nocompatible
 
-" vim 自身命令行模式智能补全
+" vim build-in complete
 set wildmenu
 
 " <<
 
 " >>>>
-" 插件安装
+" plugin manager
 
-" vundle 环境设置
+" vundle config
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
-" vundle 管理的插件列表必须位于 vundle#begin() 和 vundle#end() 之间
+" vundle plugin list must between vundle#begin() and vundle#end() 
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'tomasr/molokai'
+"Plugin 'altercation/vim-colors-solarized'
+"Plugin 'tomasr/molokai'
+Plugin 'flazz/vim-colorschemes'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin' 
-"代码分析
+" code view
 Plugin 'brookhong/cscope.vim'
-"代码注释
-Plugin 'scrooloose/nerdcommenter'
+" code comment
+Plugin 'preservim/nerdcommenter'
 Plugin 'vim-scripts/DrawIt'
+
 Plugin 'Yggdroot/LeaderF'
-"文件搜索
+" file search
 Plugin 'ctrlpvim/ctrlp.vim'
-" 插件列表结束
+" syntax highlight
+Plugin 'octol/vim-cpp-enhanced-highlight'
+
 call vundle#end()
 filetype plugin indent on
 " <<<<
-"全局搜索
+" config for ctrlp
 map <F7> : CtrlPCurWD<CR>
 map <leader><F7> : CtrlP
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:20'
@@ -147,17 +135,14 @@ nnoremap  <leader>ff :call CscopeFind('f', expand('<cword>'))<CR>
 nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
 
 
-"目录管理
+" config for nerdtree
 map <leader>lf :NERDTreeToggle<CR>
 map <leader>lF :NERDTreeFocus<CR>
 map <leader>l :NERDTree 
 map <leader>lw :NERDTreeFind<CR>
 
 let NERDTreeShowLineNumbers=0
-"打开垂直窗口  s
-"打开水平窗口  i
 
-"nerdtree git 插件
 let g:NERDTreeIndicatorMapCustom = {
         \ "Modified"  : "✹",
         \ "Staged"    : "✚",
@@ -171,32 +156,61 @@ let g:NERDTreeIndicatorMapCustom = {
         \ }
 
 
-" 配色方案
+" scheme
 set background=dark
 "set background=light
 "colorscheme solarized
 colorscheme molokai
 "colorscheme phd
+let g:Powerline_colorscheme='solarized256'
 
-" 总是显示状态栏
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+let g:cpp_posix_standard = 1
+
+" always show status bar
 set laststatus=2
 
-" 显示光标当前位置
+" show the position of cursor
 set ruler
 
-" 开启行号显示
+" show line number
 set number
 
-" 高亮显示当前行/列
+" highlight the current line/cow
 set cursorline
 set cursorcolumn
 
-" 高亮显示搜索结果
+" highlight search result
 set hlsearch
 
-" >>
-" 语法分析
 
-let g:Powerline_colorscheme='solarized256'
 
+" config for nerdcommenter
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+"
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+"
+" Align line-wise comment delimiters flush left instead of following code
+" indentation
+let g:NERDDefaultAlign = 'left'
+
+" Set a language to use its alternate delimiters by default
+let g:NERDAltDelims_java = 1
+"
+" Add your own custom formats or override the defaults
+let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+
+" Allow commenting and inverting empty lines (useful when commenting a
+" region)
+let g:NERDCommentEmptyLines = 1
+
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+
+" Enable NERDCommenterToggle to check all selected lines is commented or not 
+let g:NERDToggleCheckAllLines = 1
 

@@ -1,5 +1,19 @@
 #! /bin/bash
 
+# TODO
+# 1 add windows bat install file
+# 2 add command type,include: 
+#   - backup: backup .vimrc and .vim/ folder, storge in a new folder named "back", tar all with a name contain a time stamp
+#   - resume: cp the ~/.vimrc to the .vimrc
+#   - update: cp the .vimrc to ~/.vimrc
+# 3 complete the .vimrc file
+#   - add all the new configure
+#   - mv all the Chinese comment to English
+# 4 complete the README
+#   - add the vim basic and with plugin use note
+#   - add the windows gvim install note
+
+
 #TODO 检查cscope是否存在，若不存在则询问是否安装cscope并解压安装
 TEST_CSCOPE=$(cscope -V >/dev/null 2>&1)
 if [ $? -ne 0 ];then
@@ -41,6 +55,10 @@ cd ../../
 
 if [ $1 = "cs" ];then
     install_cscope
+fi
+
+if [ $1 = "resume" ];then
+    cp -rf ~/.vimrc .
 fi
 if [ $1 = "install" ]; then
     if [ $TEST_CSCOPE -eq 1 ];then
