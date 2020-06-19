@@ -180,7 +180,7 @@ set number
 
 " highlight the current line/cow
 set cursorline
-set cursorcolumn
+"set cursorcolumn
 
 " highlight search result
 set hlsearch
@@ -214,3 +214,8 @@ let g:NERDTrimTrailingWhitespace = 1
 " Enable NERDCommenterToggle to check all selected lines is commented or not 
 let g:NERDToggleCheckAllLines = 1
 
+set guifont=Consolas:h11:cANSI
+
+nmap <c-s> : wa<CR>
+
+set backspace=indent,eol,start
