@@ -143,7 +143,7 @@ map <leader>lw :NERDTreeFind<CR>
 
 let NERDTreeShowLineNumbers=0
 
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
         \ "Modified"  : "✹",
         \ "Staged"    : "✚",
         \ "Untracked" : "✭",
