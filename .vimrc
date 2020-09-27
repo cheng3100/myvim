@@ -35,7 +35,9 @@ syntax on
 filetype indent on
 
 " expand the tab to whitespace
-set expandtab
+" set expandtab
+" not expand the tab to whitespace
+set noexpandtab
 " set the numbers of space of one tab
 set tabstop=4
 " set the numberos of space of a tab when doing a format
@@ -219,3 +221,5 @@ set guifont=Consolas:h11:cANSI
 nmap <c-s> : wa<CR>
 
 set backspace=indent,eol,start
+
+let g:cscope_silent = 1
