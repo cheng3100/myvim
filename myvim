@@ -23,13 +23,18 @@ else
 fi
 
 if [ $# -ne 1 ];then
-    echo "Usage: ./update <option>"
+    echo "Usage: ./myvim <option>"
     echo "<option>:"
-    echo "1. update: update the local to the git resp"
-    echo "2. install: install from the git resp to local"
+    echo "1. backup: backup the local .vimrc to the git repo"
+    echo "2. backupall: backup the local .vimrc and ~/.vim/ fold to the git repo"
+    echo "3. install: install from the git resp to local"
     exit
 fi
-if [ $1 = "update" ]; then
+if [ $1 = "backup" ]; then
+    cp ~/.vimrc .vimrc
+fi
+
+if [ $1 = "backupall" ]; then
     tar -czvf vim_plugin.tar.gz -C ~ .vim 
     cp ~/.vimrc .vimrc
 fi
@@ -57,9 +62,6 @@ if [ $1 = "cs" ];then
     install_cscope
 fi
 
-if [ $1 = "resume" ];then
-    cp -rf ~/.vimrc .
-fi
 if [ $1 = "install" ]; then
     if [ $TEST_CSCOPE -eq 1 ];then
         echo "It seems that you have not install cscope"
