@@ -133,14 +133,13 @@ nnoremap <silent> <F8> :TlistToggle<CR>
 nnoremap <F7> :CtrlPTag<CR>
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:100'
 let g:ctrlp_regexp = 1
-"let g:ctrlp_show_hidden = 1
 " find files from current work folder.
 " let g:ctrlp_working_path_mode = ''
 " useful in most situation.
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_max_files = 0
 let g:ctrlp_max_depth = 40
-let g:ctrlp_show_hidden = 0
+let g:ctrlp_show_hidden = 1
 let g:ctrlp_match_current_file = 1
 " ignore version control files
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*        " Linux/MacOSX
@@ -251,9 +250,12 @@ let g:NERDTrimTrailingWhitespace = 1
 let g:NERDToggleCheckAllLines = 1
 
 set guifont=Consolas:h11:cANSI
+" set guifont=DejaVu\ Sans\ Mono\ Bold\ 10
 
 nmap <c-s> : wa<CR>
 
 set backspace=indent,eol,start
+
+autocmd BufEnter *.ino :setlocal filetype=c
 
 let g:cscope_silent = 1

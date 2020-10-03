@@ -28,14 +28,23 @@ if [ $# -ne 1 ];then
     echo "1. backup: backup the local .vimrc to the git repo"
     echo "2. backupall: backup the local .vimrc and ~/.vim/ fold to the git repo"
     echo "3. install: install from the git resp to local"
+    echo "4. update: update only the .vimrc from repo to local. And a backup of local old .vimrc will be saved."
     exit
 fi
+
+if [ $1 = "update" ]; then
+    if [ -f ~/.vimrc ];then
+        mv ~/.vimrc .vimrc.back
+    fi
+    cp -f .vimrc ~/.vimrc
+fi
+
 if [ $1 = "backup" ]; then
     cp ~/.vimrc .vimrc
 fi
 
 if [ $1 = "backupall" ]; then
-    tar -czvf vim_plugin.tar.gz -C ~ .vim 
+    tar -czvf vim_plugin.tar.gz -C ~ .vim
     cp ~/.vimrc .vimrc
 fi
 
@@ -55,7 +64,7 @@ make install > /dev/null 2>&1
 #echo "export PATH=$PATH:$HOME/bin/bin" >> $HOME/.bashrc
 #source $HOME/.bashrc
 cd ../../
-    echo "cscope has been installed!" 
+    echo "cscope has been installed!"
 }
 
 if [ $1 = "cs" ];then
@@ -69,7 +78,7 @@ if [ $1 = "install" ]; then
         echo "Do you want to install it?[yes/no]"
         read -t 60 answer
 
-        case $answer in 
+        case $answer in
             y|Y|yes|YES|Yes)
                 install_cscope
                 ;;
@@ -77,14 +86,14 @@ if [ $1 = "install" ]; then
                 echo "You still can use vim but the search function will be unusable.."
                 ;;
         esac
-    fi        
+    fi
     tar -xzvf vim_plugin.tar.gz
     if [ -d ~/.vim ];then
         tar -czvf vim_plugin.back.tar.gz -C ~ .vim
         rm -rf ~/.vim
     fi
     if [ -f ~/.vimrc ];then
-        mv ~/.vimrc vimrc.back
+        mv ~/.vimrc .vimrc.back
         rm -f ~/.vimrc
     fi
     cp -rf .vim ~/.vim

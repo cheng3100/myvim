@@ -5,6 +5,11 @@
 ./myvim install
 
 ```
+- 只将仓库中.vimrc更新到本地
+```bash
+./myvim update
+```
+
 - 将本地.vimrc修改更新到仓库
 ```bash
 ./myvim backup
