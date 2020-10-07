@@ -252,10 +252,24 @@ let g:NERDToggleCheckAllLines = 1
 set guifont=Consolas:h11:cANSI
 " set guifont=DejaVu\ Sans\ Mono\ Bold\ 10
 
-nmap <c-s> : wa<CR>
+" nmap <c-s> : wa<CR>
 
 set backspace=indent,eol,start
 
 autocmd BufEnter *.ino :setlocal filetype=c
 
 let g:cscope_silent = 1
+
+" spell check
+" zg/zw for set right/wrong to spell file
+" zG/zW for set right/wrong to system spell file
+set spell spelllang=en
+set spellfile=$HOME/.vim/en.utf-8.add
+" autocmd FileType markdown setlocal nospell
+autocmd BufRead,BufNewFile *.S *.s setlocal nospell
+" not show the up side preview complete windows
+" if let it show, you can <c-w> z to close it quickly. See :help pclose
+set completeopt-=preview
+" let <c-x> <c-l> search include tags
+set complete+=t
+
