@@ -104,7 +104,15 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'flazz/vim-colorschemes'
 
+" pic insert
+Plugin 'ferrine/md-img-paste.vim'
+
 call vundle#end()
+
+" [plugin] md-img-paste
+autocmd FileType markdown nmap <buffer><silent> <leader>i :call mdip#MarkdownClipboardImage()<CR>
+" let g:mdip_imgdir = '.'
+" let g:mdip_imgname = 'image'
 
 " [plugin] taglist setting
 filetype plugin indent on
