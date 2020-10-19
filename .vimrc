@@ -263,10 +263,11 @@ let g:cscope_silent = 1
 " spell check
 " zg/zw for set right/wrong to spell file
 " zG/zW for set right/wrong to system spell file
-set spell spelllang=en
+set nospell spelllang=en
 set spellfile=$HOME/.vim/en.utf-8.add
 " autocmd FileType markdown setlocal nospell
-autocmd BufRead,BufNewFile *.S *.s setlocal nospell
+" autocmd BufRead,BufNewFile *.S,*.s setlocal nospell
+autocmd BufRead,BufNewFile *.md,*.txt,*.c,*.h setlocal spell
 " not show the up side preview complete windows
 " if let it show, you can <c-w> z to close it quickly. See :help pclose
 set completeopt-=preview
