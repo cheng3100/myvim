@@ -110,8 +110,10 @@ Plugin 'ferrine/md-img-paste.vim'
 call vundle#end()
 
 " [plugin] md-img-paste
+let cwd = $PWD . '/images'
 autocmd FileType markdown nmap <buffer><silent> <leader>i :call mdip#MarkdownClipboardImage()<CR>
-" let g:mdip_imgdir = '.'
+let g:mdip_imgdir_absolute = cwd
+let g:mdip_imgdir_intext = '/images'
 " let g:mdip_imgname = 'image'
 
 " [plugin] taglist setting
