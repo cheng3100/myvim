@@ -285,3 +285,5 @@ set completeopt-=preview
 " let <c-x> <c-l> search include tags
 set complete+=t
 
+" highlight not jump
+nnoremap * *``
