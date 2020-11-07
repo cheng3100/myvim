@@ -110,10 +110,10 @@ Plugin 'ferrine/md-img-paste.vim'
 call vundle#end()
 
 " [plugin] md-img-paste
-let cwd = $PWD . '/images'
+let cwd = $PWD . '/pic'
 autocmd FileType markdown nmap <buffer><silent> <leader>i :call mdip#MarkdownClipboardImage()<CR>
 let g:mdip_imgdir_absolute = cwd
-let g:mdip_imgdir_intext = '/images'
+let g:mdip_imgdir_intext = '/pic'
 " let g:mdip_imgname = 'image'
 
 " [plugin] taglist setting
@@ -141,6 +141,7 @@ nnoremap <silent> <F8> :TlistToggle<CR>
 " [plugin]config for ctrlp
 " <ctrl>-p is enough to invoke the ctrlp
 nnoremap <F7> :CtrlPTag<CR>
+nnoremap <F9> :CtrlPMRUFiles<CR>
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:100'
 let g:ctrlp_regexp = 1
 " find files from current work folder.
