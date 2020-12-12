@@ -107,7 +107,19 @@ Plugin 'flazz/vim-colorschemes'
 " pic insert
 Plugin 'ferrine/md-img-paste.vim'
 
+Plugin 'ycm-core/YouCompleteMe'
+Plugin 'rdnetto/YCM-Generator'
+Plugin 'FelikZ/ctrlp-py-matcher'
+
 call vundle#end()
+
+" plugin setting
+
+" [plugin] ctrlp-py-matcher
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+
+" [plugin] ycm
+let g:ycm_auto_trigger=1
 
 " [plugin] md-img-paste
 let cwd = $PWD . '/pic'
@@ -120,7 +132,7 @@ let g:mdip_imgdir_intext = '/pic'
 filetype plugin indent on
 
 " to automatically close the taglist Windows when chose a tag.
-let g:Tlist_Close_On_Select = 1
+let g:Tlist_Close_On_Select = 0
 " close vim if the taglist window is the only one preset.
 let g:Tlist_Exit_OnlyWindow = 1
 " focus on the taglist window when open it
@@ -135,7 +147,7 @@ let g:Tlist_File_Fold_Auto_Close = 1
 let g:Tlist_Use_Horiz_Window = 0
 let g:Tlist_Use_Right_Window = 1
 
-let g:Tlist_WinWidth = 30
+let g:Tlist_WinWidth = 50
 nnoremap <silent> <F8> :TlistToggle<CR>
 
 " [plugin]config for ctrlp
@@ -260,7 +272,7 @@ let g:NERDTrimTrailingWhitespace = 1
 " Enable NERDCommenterToggle to check all selected lines is commented or not
 let g:NERDToggleCheckAllLines = 1
 
-set guifont=Consolas:h11:cANSI
+set guifont=Consolas:h12:cANSI
 " set guifont=DejaVu\ Sans\ Mono\ Bold\ 10
 
 " nmap <c-s> : wa<CR>
@@ -287,3 +299,7 @@ set complete+=t
 
 " highlight not jump
 nnoremap * *``
+
+vmap <Leader>y "+y
+vmap <Leader>p "+p
+
