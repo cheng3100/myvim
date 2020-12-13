@@ -1,0 +1,3 @@
+--langmap=c:.c.S.h
+-R
+--languages=c

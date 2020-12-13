@@ -321,3 +321,11 @@ nnoremap * *``
 vmap <Leader>y "+y
 vmap <Leader>p "+p
 
+let s:ctags_filter = "(c|S|h)"
+
+function! CreateTags()
+	silent !clear	
+	execute "!" . "find . -regextype posix-extended -regex '.*\." . s:ctags_filter . "'" . " | xargs ctags"
+endfunction
+
+nnoremap <Leader>tt :call CreateTags()<CR>
