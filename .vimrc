@@ -1,12 +1,22 @@
+if !exists("g:os")
+    if has("win64") || has("win32") || has("win16")
+        let g:os = "Windows"
+    else
+        let g:os = substitute(system('uname'), '\n', '', '')
+    endif
+endif
+
+if g:os == "Windows"
 " uncomment this when using in windows chinese version
-"set encoding=utf-8
-"set termencoding=utf-8
-"set fileencoding=chinese
-"set fileencodings=ucs-bom,utf-8,chinese
-"set langmenu=zh_CN.utf-8
-"source $VIMRUNTIME/delmenu.vim
-"source $VIMRUNTIME/menu.vim
-"language messages zh_cn.utf-8
+set encoding=utf-8
+set termencoding=utf-8
+set fileencoding=chinese
+set fileencodings=ucs-bom,utf-8,chinese
+set langmenu=zh_CN.utf-8
+source $VIMRUNTIME/delmenu.vim
+source $VIMRUNTIME/menu.vim
+language messages zh_cn.utf-8
+endif
 
 " define the control prefix，which is  <Leader>
 let mapleader=";"
@@ -99,7 +109,7 @@ Plugin 'vim-scripts/DrawIt'
 
 " Plugin 'Yggdroot/LeaderF'
 " file search
-Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'cheng3100/ctrlp.vim'
 " syntax highlight
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'flazz/vim-colorschemes'
@@ -109,7 +119,8 @@ Plugin 'ferrine/md-img-paste.vim'
 
 Plugin 'ycm-core/YouCompleteMe'
 Plugin 'rdnetto/YCM-Generator'
-Plugin 'FelikZ/ctrlp-py-matcher'
+Plugin 'cheng3100/ctrlp-py-matcher'
+" Plugin 'junegunn/fzf.vim'
 
 call vundle#end()
 
@@ -120,6 +131,13 @@ let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 
 " [plugin] ycm
 let g:ycm_auto_trigger=1
+
+" ycm: Find this definition
+nnoremap  <leader>fg :YcmCompleter GoToDefinition<CR>
+nnoremap  <leader>fd :YcmCompleter GoToDeclaration<CR>
+nnoremap  <leader>fr :YcmCompleter GoToReferences<CR>
+nnoremap  <leader>fi :YcmCompleter GoToInclude<CR>
+nnoremap  <leader>gt :YcmCompleter GetType<CR>
 
 " [plugin] md-img-paste
 let cwd = $PWD . '/pic'
@@ -174,23 +192,23 @@ let g:ctrlp_extensions = ['tag', 'buffertag',  'mixed', 'changes']
 nnoremap <leader>fa :call CscopeFindInteractive(expand('<cword>'))<CR>
 nnoremap <leader>L :call ToggleLocationList()<CR>
 
-
+" These are replaced by ycm.Only `fa` is remained.
 " s: Find this C symbol
-nnoremap  <leader>fs :call CscopeFind('s', expand('<cword>'))<CR>
-" g: Find this definition
-nnoremap  <leader>fg :call CscopeFind('g', expand('<cword>'))<CR>
-" d: Find functions called by this function
-nnoremap  <leader>fd :call CscopeFind('d', expand('<cword>'))<CR>
-" c: Find functions calling this function
-nnoremap  <leader>fc :call CscopeFind('c', expand('<cword>'))<CR>
-" t: Find this text string
-nnoremap  <leader>ft :call CscopeFind('t', expand('<cword>'))<CR>
-" e: Find this egrep pattern
-nnoremap  <leader>fe :call CscopeFind('e', expand('<cword>'))<CR>
-" f: Find this file
-nnoremap  <leader>ff :call CscopeFind('f', expand('<cword>'))<CR>
-" i: Find files #including this file
-nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
+" nnoremap  <leader>fs :call CscopeFind('s', expand('<cword>'))<CR>
+" " g: Find this definition
+" nnoremap  <leader>fg :call CscopeFind('g', expand('<cword>'))<CR>
+" " d: Find functions called by this function
+" nnoremap  <leader>fd :call CscopeFind('d', expand('<cword>'))<CR>
+" " c: Find functions calling this function
+" nnoremap  <leader>fc :call CscopeFind('c', expand('<cword>'))<CR>
+" " t: Find this text string
+" nnoremap  <leader>ft :call CscopeFind('t', expand('<cword>'))<CR>
+" " e: Find this egrep pattern
+" nnoremap  <leader>fe :call CscopeFind('e', expand('<cword>'))<CR>
+" " f: Find this file
+" nnoremap  <leader>ff :call CscopeFind('f', expand('<cword>'))<CR>
+" " i: Find files #including this file
+" nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
 
 
 " config for nerdtree
