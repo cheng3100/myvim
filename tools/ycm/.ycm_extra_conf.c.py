@@ -127,6 +127,7 @@ def Settings( **kwargs ):
     if not database:
       return {
         'flags': flags,
+        #   defalt is from the CWD of vim is enough
         'include_paths_relative_to_dir': DIR_OF_THIS_SCRIPT,
         'override_filename': filename
       }
