@@ -30,9 +30,13 @@ filetype plugin on
 " vim build-in control
 "  window change
 nmap <Leader>ww :resize +3 <CR>
-nmap <Leader>wx :resize -3 <CR>
+nmap <Leader>ws :resize -3 <CR>
+nmap <Leader>wW :resize +6 <CR>
+nmap <Leader>wS :resize -6 <CR>
 nmap <Leader>wa :vertical resize -5 <CR>
 nmap <Leader>wd :vertical resize +5 <CR>
+nmap <Leader>wA :vertical resize -10 <CR>
+nmap <Leader>wD :vertical resize +10 <CR>
 
 
 " enable build-in syntax-highlight
@@ -130,6 +134,7 @@ call vundle#end()
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 
 " [plugin] ycm
+" let g:ycm_global_ycm_extra_conf = '/home/cheng/.ycm_extra_conf.py'
 let g:ycm_auto_trigger=1
 
 " ycm: Find this definition
@@ -177,7 +182,7 @@ let g:ctrlp_regexp = 1
 " find files from current work folder.
 " let g:ctrlp_working_path_mode = ''
 " useful in most situation.
-let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_working_path_mode = 'r'
 let g:ctrlp_max_files = 0
 let g:ctrlp_max_depth = 40
 let g:ctrlp_show_hidden = 1
@@ -290,14 +295,14 @@ let g:NERDTrimTrailingWhitespace = 1
 " Enable NERDCommenterToggle to check all selected lines is commented or not
 let g:NERDToggleCheckAllLines = 1
 
-set guifont=Consolas:h12:cANSI
-" set guifont=DejaVu\ Sans\ Mono\ Bold\ 10
+" set guifont=Consolas:h12:cANSI
+set guifont=DejaVu\ Sans\ Mono\ Bold\ 12
 
 " nmap <c-s> : wa<CR>
 
 set backspace=indent,eol,start
 
-autocmd BufEnter *.ino :setlocal filetype=c
+autocmd BufEnter *.ino :setlocal filetype=cpp
 
 let g:cscope_silent = 1
 
@@ -321,7 +326,7 @@ nnoremap * *``
 vmap <Leader>y "+y
 vmap <Leader>p "+p
 
-let s:ctags_filter = "(c|S|h)"
+let s:ctags_filter = "(c|S|h|s|cpp|cxx|hpp|Makefile|GNUMakefile)"
 
 function! CreateTags()
 	silent !clear	
