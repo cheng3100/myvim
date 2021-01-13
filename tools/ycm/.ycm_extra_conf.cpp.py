@@ -33,6 +33,10 @@ import platform
 import os
 import subprocess
 import ycm_core
+import re
+import glob
+import os.path as p
+
 
 DIR_OF_THIS_SCRIPT = os.path.abspath( os.path.dirname( __file__ ) )
 DIR_OF_THIRD_PARTY = os.path.join( DIR_OF_THIS_SCRIPT, 'third_party' )
@@ -46,54 +50,52 @@ flags = [
 '-Wextra',
 '-Werror',
 '-Wno-long-long',
-'-Wno-variadic-macros',
+#  '-Wno-variadic-macros',
 '-fexceptions',
 '-DNDEBUG',
 # You 100% do NOT need -DUSE_CLANG_COMPLETER and/or -DYCM_EXPORT in your flags;
 # only the YCM source code needs it.
-'-DUSE_CLANG_COMPLETER',
-'-DYCM_EXPORT=',
+#  '-DUSE_CLANG_COMPLETER',
+#  '-DYCM_EXPORT=',
 # THIS IS IMPORTANT! Without the '-x' flag, Clang won't know which language to
 # use when compiling headers. So it will guess. Badly. So C++ headers will be
 # compiled as C headers. You don't want that so ALWAYS specify the '-x' flag.
 # For a C project, you would set this to 'c' instead of 'c++'.
 '-x',
-#  'c++',
-'c',
+'c++',
+# For linux head path
 '-I',
 '.',
-'-isystem',
-'cpp/pybind11',
-'-isystem',
-'cpp/BoostParts',
-'-isystem',
-get_python_inc(),
-'-isystem',
-'cpp/llvm/include',
-'-isystem',
-'cpp/llvm/tools/clang/include',
 '-I',
-'cpp/ycm',
+'include',
 '-I',
-'cpp/ycm/ClangCompleter',
-'-isystem',
-'cpp/ycm/tests/gmock/gtest',
-'-isystem',
-'cpp/ycm/tests/gmock/gtest/include',
-'-isystem',
-'cpp/ycm/tests/gmock',
-'-isystem',
-'cpp/ycm/tests/gmock/include',
-'-isystem',
-'cpp/ycm/benchmarks/benchmark/include',
+'arch/x86/include',
+'-I',
+'arch/x86/include/generated',
+'-D',
+'__KERNEL__',
 ]
+
+def getIncludePath(d):
+    if glob.glob(p.join(d, "*.h")):
+        p_i.append("-I" + d)
+
+    for m in os.listdir(d):
+        m = p.join(d, m)
+        if p.isdir(m) and not re.match(r"(\.git)|(.*\.swp)" , p.basename(m)):
+            getIncludePath(m)
+
+getIncludePath(DIR_OF_THIS_SCRIPT)
+flags = flags + p_i
 
 # Clang automatically sets the '-std=' flag to 'c++14' for MSVC 2015 or later,
 # which is required for compiling the standard library, and to 'c++11' for older
 # versions.
 if platform.system() != 'Windows':
   flags.append( '-std=c++11' )
-
+# The flag can be gnu99/c99/c++11
+#  if platform.system() != 'Windows':
+#    flags.append( '-std=gnu99' )
 
 # Set this to the absolute path to the folder (NOT the file!) containing the
 # compile_commands.json file to use that instead of 'flags'. See here for
@@ -137,6 +139,7 @@ def Settings( **kwargs ):
     # possible to jump from a declaration in the header file to its definition
     # in the corresponding source file.
     filename = FindCorrespondingSourceFile( kwargs[ 'filename' ] )
+
 
     if not database:
       return {

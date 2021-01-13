@@ -33,10 +33,16 @@ import platform
 import os
 import subprocess
 import ycm_core
+import re
+import glob
+import os.path as p
+
 
 DIR_OF_THIS_SCRIPT = os.path.abspath( os.path.dirname( __file__ ) )
 DIR_OF_THIRD_PARTY = os.path.join( DIR_OF_THIS_SCRIPT, 'third_party' )
-SOURCE_EXTENSIONS = [ '.c', '.asm', '.S' ]
+SOURCE_EXTENSIONS = [ '.asm', '.S', 's', 'c' ]
+
+p_i = []
 
 # These are the compilation flags that will be used in case there's no
 # compilation database set (by default, one is not set).
@@ -69,8 +75,20 @@ flags = [
 '-I',
 'arch/x86/include/generated',
 '-D',
-'__KERNEL__'
+'__KERNEL__',
 ]
+
+def getIncludePath(d):
+    if glob.glob(p.join(d, "*.h")):
+        p_i.append("-I" + d)
+
+    for m in os.listdir(d):
+        m = p.join(d, m)
+        if p.isdir(m) and not re.match(r"(\.git)|(.*\.swp)" , p.basename(m)):
+            getIncludePath(m)
+
+getIncludePath(DIR_OF_THIS_SCRIPT)
+flags = flags + p_i
 
 # Clang automatically sets the '-std=' flag to 'c++14' for MSVC 2015 or later,
 # which is required for compiling the standard library, and to 'c++11' for older
@@ -127,7 +145,6 @@ def Settings( **kwargs ):
     if not database:
       return {
         'flags': flags,
-        #   defalt is from the CWD of vim is enough
         'include_paths_relative_to_dir': DIR_OF_THIS_SCRIPT,
         'override_filename': filename
       }
