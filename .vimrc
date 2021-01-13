@@ -323,6 +323,8 @@ set complete+=t
 " highlight not jump
 nnoremap * *``
 
+" if yy something then dd another line, use "0p to paste the yy line and p for
+" dd lines
 vmap <Leader>y "+y
 vmap <Leader>p "+p
 
