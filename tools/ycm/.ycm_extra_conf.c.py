@@ -38,6 +38,7 @@ import glob
 import os.path as p
 
 
+CWD = os.path.abspath(os.getcwd())
 DIR_OF_THIS_SCRIPT = os.path.abspath( os.path.dirname( __file__ ) )
 DIR_OF_THIRD_PARTY = os.path.join( DIR_OF_THIS_SCRIPT, 'third_party' )
 SOURCE_EXTENSIONS = [ '.asm', '.S', 's', 'c' ]
@@ -87,7 +88,7 @@ def getIncludePath(d):
         if p.isdir(m) and not re.match(r"(\.git)|(.*\.swp)" , p.basename(m)):
             getIncludePath(m)
 
-getIncludePath(DIR_OF_THIS_SCRIPT)
+getIncludePath(CWD)
 flags = flags + p_i
 
 # Clang automatically sets the '-std=' flag to 'c++14' for MSVC 2015 or later,
@@ -145,7 +146,7 @@ def Settings( **kwargs ):
     if not database:
       return {
         'flags': flags,
-        'include_paths_relative_to_dir': DIR_OF_THIS_SCRIPT,
+        'include_paths_relative_to_dir': CWD,
         'override_filename': filename
       }
 
