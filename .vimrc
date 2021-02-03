@@ -136,6 +136,8 @@ let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 " [plugin] ycm
 " let g:ycm_global_ycm_extra_conf = '/home/cheng/.ycm_extra_conf.py'
 let g:ycm_auto_trigger=1
+let g:ycm_auto_hover=''
+nmap <leader>D <plug>(YCMHover)
 
 " ycm: Find this definition
 nnoremap  <leader>fg :YcmCompleter GoToDefinition<CR>
