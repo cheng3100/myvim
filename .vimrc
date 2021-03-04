@@ -121,8 +121,8 @@ Plugin 'flazz/vim-colorschemes'
 " pic insert
 Plugin 'ferrine/md-img-paste.vim'
 
-Plugin 'ycm-core/YouCompleteMe'
-Plugin 'rdnetto/YCM-Generator'
+" Plugin 'ycm-core/YouCompleteMe'
+" Plugin 'rdnetto/YCM-Generator'
 Plugin 'cheng3100/ctrlp-py-matcher'
 " Plugin 'junegunn/fzf.vim'
 
