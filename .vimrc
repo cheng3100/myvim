@@ -126,9 +126,15 @@ Plugin 'ferrine/md-img-paste.vim'
 Plugin 'cheng3100/ctrlp-py-matcher'
 " Plugin 'junegunn/fzf.vim'
 
+Plugin 'ianding1/leetcode.vim'
+
 call vundle#end()
 
 " plugin setting
+
+" leetcode
+let g:leetcode_china = 1
+let g:leetcode_browser = 'firefox'
 
 " [plugin] ctrlp-py-matcher
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
@@ -338,3 +344,8 @@ function! CreateTags()
 endfunction
 
 nnoremap <Leader>tt :call CreateTags()<CR>
+
+
+" note for no-shortkey command
+" :set list - show hidden char
+" :set nolist - close show hidden char
