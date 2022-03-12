@@ -128,6 +128,15 @@ Plugin 'cheng3100/ctrlp-py-matcher'
 
 Plugin 'ianding1/leetcode.vim'
 
+" for search unicode number
+Plugin 'chrisbra/unicode.vim'
+
+" marks highlight
+Plugin 'kshenoy/vim-signature'
+
+" save vim current state to a config file
+Plugin 'tpope/vim-obsession'
+
 call vundle#end()
 
 " plugin setting
@@ -347,5 +356,9 @@ nnoremap <Leader>tt :call CreateTags()<CR>
 
 
 " note for no-shortkey command
+"
 " :set list - show hidden char
 " :set nolist - close show hidden char
+"
+" Add multiple path ctags files
+" :set tags+=/path/to/other/dir/my_tags
