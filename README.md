@@ -20,6 +20,8 @@
 ./myvimall backup
 ```
 
+> note: please input `:PluginInstall` when first open vim to install the plugin
+
 # 1. basic
 
 ## 1.1 basic control
