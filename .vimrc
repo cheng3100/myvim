@@ -137,9 +137,36 @@ Plugin 'kshenoy/vim-signature'
 " save vim current state to a config file
 Plugin 'tpope/vim-obsession'
 
+" vim debug, recommand vim>=8.2(802), 801 seem still work
+if v:version >= 801
+	let use_vim_spector=1
+else
+	let use_vim_spector=0
+endif
+
+if use_vim_spector==1
+Plugin 'puremourning/vimspector'
+endif
+
 call vundle#end()
 
 " plugin setting
+" vimspector
+if use_vim_spector==1
+let g:vimspector_enable_mappings = 'HUMAN'
+" for python, c/cpp, rust, bash
+let g:vimspector_install_gadgets = [ 'debugpy', 'vscode-cpptools', 'CodeLLDB', 'vscode-bash-debug']
+
+" mnemonic 'di' = 'debug inspect' (pick your own, if you prefer!)
+
+" for normal mode - the word under the cursor
+	" nmap <Leader>di <Plug>VimspectorBalloonEval
+" for visual mode, the visually selected text
+	" xmap <Leader>di <Plug>VimspectorBalloonEval
+
+nmap <LocalLeader><F11> <Plug>VimspectorUpFrame
+nmap <LocalLeader><F12> <Plug>VimspectorDownFrame
+endif
 
 " leetcode
 let g:leetcode_china = 1
