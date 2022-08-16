@@ -106,7 +106,8 @@ Plugin 'preservim/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 " code navigation
 Plugin 'brookhong/cscope.vim'
-Plugin 'yegappan/taglist'
+" taglist has a conflict bug with the `vim-airline`
+" Plugin 'yegappan/taglist'
 " code comment
 Plugin 'preservim/nerdcommenter'
 Plugin 'vim-scripts/DrawIt'
@@ -115,13 +116,16 @@ Plugin 'vim-scripts/DrawIt'
 " file search
 Plugin 'cheng3100/ctrlp.vim'
 " syntax highlight
-Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'flazz/vim-colorschemes'
+" Plugin 'octol/vim-cpp-enhanced-highlight'
+" Plugin 'flazz/vim-colorschemes'
+" Plugin 'sainnhe/gruvbox-material'
+Plugin 'NLKNguyen/papercolor-theme'
+
 
 " pic insert
 Plugin 'ferrine/md-img-paste.vim'
 
-" Plugin 'ycm-core/YouCompleteMe'
+Plugin 'ycm-core/YouCompleteMe'
 " Plugin 'rdnetto/YCM-Generator'
 Plugin 'cheng3100/ctrlp-py-matcher'
 " Plugin 'junegunn/fzf.vim'
@@ -145,8 +149,14 @@ else
 endif
 
 if use_vim_spector==1
-Plugin 'puremourning/vimspector'
+" Plugin 'puremourning/vimspector'
 endif
+
+" advanced
+Plugin 'sheerun/vim-polyglot'
+Plugin 'vim-airline/vim-airline'
+Plugin 'preservim/tagbar'
+Plugin 'tpope/vim-fugitive'
 
 call vundle#end()
 
@@ -197,25 +207,6 @@ let g:mdip_imgdir_intext = '/pic'
 
 " [plugin] taglist setting
 filetype plugin indent on
-
-" to automatically close the taglist Windows when chose a tag.
-let g:Tlist_Close_On_Select = 0
-" close vim if the taglist window is the only one preset.
-let g:Tlist_Exit_OnlyWindow = 1
-" focus on the taglist window when open it
-let g:Tlist_GainFocus_On_ToggleOpen = 1
-" show taglist only for current single file
-let g:Tlist_Show_One_File = 0
-" disable auto taglist update. you can type `u` in taglist window or
-" enter `:TlistUpdate` command to manual update.
-" let g:Tlist_Auto_Update = 0
-let g:Tlist_Display_Prototype = 1
-let g:Tlist_File_Fold_Auto_Close = 1
-let g:Tlist_Use_Horiz_Window = 0
-let g:Tlist_Use_Right_Window = 1
-
-let g:Tlist_WinWidth = 50
-nnoremap <silent> <F8> :TlistToggle<CR>
 
 " [plugin]config for ctrlp
 " <ctrl>-p is enough to invoke the ctrlp
@@ -282,17 +273,58 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 
 
 " scheme
-set background=dark
-"set background=light
+" set background=dark
+" set background=light
 "colorscheme solarized
-colorscheme molokai
-"colorscheme phd
-let g:Powerline_colorscheme='solarized256'
+" colorscheme molokai
+" colorscheme default
+" colorscheme phd
 
-let g:cpp_class_scope_highlight = 1
-let g:cpp_member_variable_highlight = 1
-let g:cpp_class_decl_highlight = 1
-let g:cpp_posix_standard = 1
+" color 01 for colorscheme gruvbox_material
+" if has('termguicolors')
+"   set termguicolors
+" endif
+" " For dark version.
+" set background=dark
+" " This configuration option should be placed before `colorscheme gruvbox-material`.
+" " Available values: 'hard', 'medium'(default), 'soft'
+" let g:gruvbox_material_background = 'hard'
+" " For better performance
+" let g:gruvbox_material_better_performance = 1
+" let &t_ZH="\e[3m"
+" let &t_ZR="\e[23m"
+" colorscheme gruvbox-material
+" " see https://github.com/sainnhe/gruvbox-material/issues/5 for the comment
+" " backgroud issue.
+" hi Comment term=bold cterm=NONE ctermfg=245 gui=NONE guifg=#928374
+" " Be compatible with transparent terminals
+" " https://stackoverflow.com/questions/37712730/set-vim-background-transparent
+" hi Normal guibg=NONE ctermbg=NONE
+" hi EndOfBuffer guibg=NONE ctermbg=NONE
+
+" color 02 for papercolor
+" TODO how to change the tab/status bar inactive fg color?
+" see here: https://github.com/vim-airline/vim-airline/issues/553
+set t_Co=256   " This is may or may not needed.
+set background=dark
+
+let g:PaperColor_Theme_Options = {
+  \   'theme': {
+  \     'default': {
+  \       'transparent_background': 0
+  \     }
+  \   }
+  \ }
+
+colorscheme PaperColor
+
+
+" let g:Powerline_colorscheme='solarized256'
+"
+" let g:cpp_class_scope_highlight = 1
+" let g:cpp_member_variable_highlight = 1
+" let g:cpp_class_decl_highlight = 1
+" let g:cpp_posix_standard = 1
 
 " always show status bar
 set laststatus=2
@@ -389,3 +421,25 @@ nnoremap <Leader>tt :call CreateTags()<CR>
 "
 " Add multiple path ctags files
 " :set tags+=/path/to/other/dir/my_tags
+
+
+" fix bug on the molokar scheme color, the comment will be more clear add
+" these
+" set background=light
+" set background=dark
+
+" advanced plugin configuration
+
+" for airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+" disable spell detection >
+let g:airline_detect_spell=0
+" enable paste detection >
+let g:airline_detect_paste=1
+" enable crypt detection >
+let g:airline_detect_crypt=1
+
+" for tagbar
+nmap <F8> :TagbarToggle<CR>
+
