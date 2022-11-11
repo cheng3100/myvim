@@ -158,6 +158,9 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'preservim/tagbar'
 Plugin 'tpope/vim-fugitive'
 
+Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plugin 'junegunn/fzf.vim'
+
 call vundle#end()
 
 " plugin setting
