@@ -125,7 +125,7 @@ Plugin 'NLKNguyen/papercolor-theme'
 " pic insert
 Plugin 'ferrine/md-img-paste.vim'
 
-Plugin 'ycm-core/YouCompleteMe'
+" Plugin 'ycm-core/YouCompleteMe'
 " Plugin 'rdnetto/YCM-Generator'
 Plugin 'cheng3100/ctrlp-py-matcher'
 " Plugin 'junegunn/fzf.vim'
@@ -161,9 +161,14 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plugin 'junegunn/fzf.vim'
 
+" Plugin 'Yilin-Yang/vim-markbar'
+
 call vundle#end()
 
 " plugin setting
+" vim-markbar
+" nmap <Leader>m  <Plug>ToggleMarkbar
+"
 " vimspector
 if use_vim_spector==1
 let g:vimspector_enable_mappings = 'HUMAN'
@@ -213,8 +218,15 @@ filetype plugin indent on
 
 " [plugin]config for ctrlp
 " <ctrl>-p is enough to invoke the ctrlp
-nnoremap <F7> :CtrlPTag<CR>
+" replace the tags search with the fzf command Tags and BTags(only tags on
+" current open buffer)
+" nnoremap <F7> :CtrlPTag<CR>
+nnoremap <F7> :Tags<CR>
+nnoremap <Leader>ff :Files<CR>
+nnoremap <Leader><F7> :BTags<CR>
 nnoremap <F9> :CtrlPMRUFiles<CR>
+" to let fzf use the ctrl-p keymapping
+" let g:ctrlp_map = '<Leader><F6>'
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:100'
 let g:ctrlp_regexp = 1
 " find files from current work folder.
@@ -410,7 +422,7 @@ vmap <Leader>p "+p
 let s:ctags_filter = "(c|S|h|s|cpp|cxx|hpp|Makefile|GNUMakefile)"
 
 function! CreateTags()
-	silent !clear	
+	silent !clear
 	execute "!" . "find . -regextype posix-extended -regex '.*\." . s:ctags_filter . "'" . " | xargs ctags"
 endfunction
 
@@ -442,6 +454,15 @@ let g:airline_detect_spell=0
 let g:airline_detect_paste=1
 " enable crypt detection >
 let g:airline_detect_crypt=1
+" let g:airline_stl_path_style = 'long'
+let g:airline_section_c_only_filename = 1
+" let g:airline_statusline_ontop = 1
+let g:airline#extensions#fzf#enabled = 1
+" the `whitespace extension should be avoid to take up too much space`
+let g:airline_extensions = ['branch', 'ctrlp', 'fzf', 'fugitiveline',
+                            \ 'keymap', 'obsession', 'quickfix',
+                            \ 'po', 'tagbar', 'term', 'unicode',
+                            \  'wordcount' ]
 
 " for tagbar
 nmap <F8> :TagbarToggle<CR>
