@@ -174,8 +174,10 @@ Plugin 'tpope/vim-obsession'
 " vim debug, recommand vim>=8.2(802), 801 seem still work
 if v:version >= 801
 	let use_vim_spector=1
+    let use_vim_coc=1
 else
 	let use_vim_spector=0
+    let use_vim_coc=0
 endif
 
 if use_vim_spector==1
@@ -191,8 +193,9 @@ Plugin 'tpope/vim-fugitive'
 
 Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plugin 'junegunn/fzf.vim'
-
+if use_vim_coc==1
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+endif
 
 call vundle#end()
 
@@ -349,6 +352,7 @@ let g:airline_extensions = ['branch', 'ctrlp', 'fzf', 'fugitiveline',
                             \ 'po', 'tagbar', 'term', 'unicode',
                             \  'wordcount' ]
 
+if use_vim_coc==1
 " [plugin] for tagbar
 nmap <F8> :TagbarToggle<CR>
 
@@ -372,3 +376,4 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+endif
