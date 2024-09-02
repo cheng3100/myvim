@@ -231,6 +231,14 @@ let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 " nnoremap <F7> :CtrlPTag<CR>
 " to let fzf use the ctrl-p keymapping
 " let g:ctrlp_map = '<Leader><F6>'
+" This is the default extra key bindings
+"
+" seems sometime the default ctrl-v for vsplit is overwriten by others. So
+" modify this to ctrl-i
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-i': 'vsplit' }
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20,results:100'
 let g:ctrlp_regexp = 1
 " find files from current work folder.
