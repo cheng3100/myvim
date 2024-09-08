@@ -171,8 +171,8 @@ Plugin 'kshenoy/vim-signature'
 " save vim current state to a config file
 Plugin 'tpope/vim-obsession'
 
-" vim debug, recommand vim>=8.2(802), 801 seem still work
-if v:version >= 801
+" vim debug, recommand vim>=9.0(900)
+if v:version >= 900
 	let use_vim_spector=1
     let use_vim_coc=1
 else
