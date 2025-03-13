@@ -180,6 +180,9 @@ else
     let use_vim_coc=0
 endif
 
+let use_vim_spector=0
+let use_vim_coc=0
+
 if use_vim_spector==1
 " Plugin 'puremourning/vimspector'
 endif
@@ -196,6 +199,11 @@ Plugin 'junegunn/fzf.vim'
 if use_vim_coc==1
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 endif
+
+Plugin 'ZSaberLv0/ZFVimDirDiff'
+Plugin 'ZSaberLv0/ZFVimJob' " required
+Plugin 'ZSaberLv0/ZFVimIgnore' " optional, but recommended for auto ignore setup
+Plugin 'ZSaberLv0/ZFVimBackup' " optional, but recommended for auto backup
 
 call vundle#end()
 
