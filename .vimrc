@@ -133,6 +133,13 @@ nnoremap <silent> <F12> :let _s=@/ <Bar> :%s/\(\s\\|\t\)\+$//e <Bar> :let @/=_s 
 "turn off search result highlight
 nmap <Leader>/ :nohl<CR>
 
+set foldcolumn=1     " Show a 1-character-wide fold column
+set foldmethod=manual
+" zf create fold at select V lines
+" za toggle fold
+" zR extend all fold
+" zM close all fold (max fold)
+
 " plugin manager
 
 " vundle config
@@ -367,6 +374,8 @@ let g:airline_extensions = ['branch', 'ctrlp', 'fzf', 'fugitiveline',
                             \ 'keymap', 'obsession', 'quickfix',
                             \ 'po', 'tagbar', 'term', 'unicode',
                             \  'wordcount' ]
+
+" let g:airline_theme='papercolor'
 
 if use_vim_coc==1
 " [plugin] for tagbar
