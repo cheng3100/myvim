@@ -105,6 +105,11 @@ endfunction
 
 nnoremap <Leader>tt :call CreateTags()<CR>
 
+" enter below to automatic format markdown table after visual select lines
+" : !tr -s " " | column -t -s '|' -o '|'
+" TODO map not work for this , need to solve later
+" vmap <Leader>fm :w !tr -s ' ' \| column -t -s '|' -o '|'<CR>
+
 
 " note for no-shortkey command
 "
@@ -211,6 +216,8 @@ Plugin 'ZSaberLv0/ZFVimDirDiff'
 Plugin 'ZSaberLv0/ZFVimJob' " required
 Plugin 'ZSaberLv0/ZFVimIgnore' " optional, but recommended for auto ignore setup
 Plugin 'ZSaberLv0/ZFVimBackup' " optional, but recommended for auto backup
+
+Plugin 'dhruvasagar/vim-table-mode'
 
 call vundle#end()
 
