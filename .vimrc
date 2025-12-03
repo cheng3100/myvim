@@ -155,7 +155,7 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'preservim/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
+" Plugin 'Xuyuanp/nerdtree-git-plugin'
 " code navigation
 " taglist has a conflict bug with the `vim-airline`
 " Plugin 'yegappan/taglist'
@@ -172,7 +172,7 @@ Plugin 'NLKNguyen/papercolor-theme'
 " Plugin 'rdnetto/YCM-Generator'
 Plugin 'cheng3100/ctrlp-py-matcher'
 
-Plugin 'ianding1/leetcode.vim'
+" Plugin 'ianding1/leetcode.vim'
 
 " for search unicode number
 Plugin 'chrisbra/unicode.vim'
@@ -204,7 +204,7 @@ Plugin 'sheerun/vim-polyglot'
 Plugin 'vim-airline/vim-airline'
 Plugin 'preservim/tagbar'
 " some wrap for git command like :Gclog will show git log.
-Plugin 'tpope/vim-fugitive'
+" Plugin 'tpope/vim-fugitive'
 
 Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plugin 'junegunn/fzf.vim'
