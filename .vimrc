@@ -377,7 +377,8 @@ let g:airline_section_c_only_filename = 1
 " let g:airline_statusline_ontop = 1
 let g:airline#extensions#fzf#enabled = 1
 " the `whitespace extension should be avoid to take up too much space`
-let g:airline_extensions = ['branch', 'ctrlp', 'fzf', 'fugitiveline',
+" let g:airline_extensions = ['branch', 'ctrlp', 'fzf', 'fugitiveline',
+let g:airline_extensions = ['branch', 'ctrlp', 'fzf', 
                             \ 'keymap', 'obsession', 'quickfix',
                             \ 'po', 'tagbar', 'term', 'unicode',
                             \  'wordcount' ]
