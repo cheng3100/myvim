@@ -219,7 +219,16 @@ Plugin 'ZSaberLv0/ZFVimBackup' " optional, but recommended for auto backup
 
 Plugin 'dhruvasagar/vim-table-mode'
 
+Plugin 'azabiong/vim-highlighter'
+
 call vundle#end()
+
+" plugin keyshort for vim-highlighter
+let HiSet   = 'f<CR>'
+let HiErase = 'f<BS>'
+let HiClear = 'f<C-L>'
+let HiFind  = 'f<Tab>'
+let HiSetSL = 't<CR>'
 
 " plugin setting
 " [plugin] vimspector
